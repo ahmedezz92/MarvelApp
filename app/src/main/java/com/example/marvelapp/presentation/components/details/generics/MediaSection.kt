@@ -36,7 +36,6 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import coil.compose.AsyncImage
 import com.example.marvelapp.domain.model.Thumbnail
 import com.example.marvelapp.presentation.components.details.CharacterDetailsViewModel
-import com.example.marvelapp.presentation.components.details.MediaCard
 
 // Generic MediaSection composable
 @Composable
