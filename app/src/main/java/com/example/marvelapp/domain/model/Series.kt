@@ -1,5 +1,7 @@
 package com.example.marvelapp.domain.model
 
+import com.example.marvelapp.presentation.components.details.generics.MediaItem
+
 data class Series(
     val available: Int,
     val collectionURI: String,
@@ -8,6 +10,6 @@ data class Series(
 )
 
 data class SeriesItems(
-    val resourceURI: String,
+    override val resourceURI: String,
     val name: String
-)
+) : MediaItem

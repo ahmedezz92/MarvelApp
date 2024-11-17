@@ -5,15 +5,19 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
 import com.example.marvelapp.presentation.components.details.CharacterDetails
+import com.example.marvelapp.presentation.components.details.CharacterDetailsViewModel
 import com.example.marvelapp.presentation.components.list.CharactersList
 
 @Composable
 fun CharactersApp(
     charactersViewModel: CharactersViewModel = hiltViewModel(),
+    characterDetailsViewModel: CharacterDetailsViewModel = hiltViewModel()
 ) {
     val navController = rememberNavController()
     Scaffold(
@@ -30,10 +34,14 @@ fun CharactersApp(
                 )
             }
             composable(
-                route = "characterDetails/",
+                route = "charDetails/{characterId}",
+                arguments = listOf(navArgument("characterId") { type = NavType.IntType })
             ) {
+                val characterId = it.arguments?.getInt("characterId") ?: return@composable
                 CharacterDetails(
-                    navController
+                    charactersViewModel = charactersViewModel,
+                    characterId = characterId,
+                    navController = navController
                 )
             }
         }

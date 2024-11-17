@@ -12,5 +12,4 @@ class RequestInterceptor(
             .build()
         return chain.proceed(newRequest)
     }
-
 }

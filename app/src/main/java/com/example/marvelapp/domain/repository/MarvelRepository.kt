@@ -6,9 +6,13 @@ import com.example.marvelapp.domain.model.BaseResult
 import kotlinx.coroutines.flow.Flow
 
 interface MarvelRepository {
-    suspend fun getCharactersList(
+     fun getCharactersList(
         offset: Int,
         limit: Int
+    ): Flow<BaseResult<WrappedResponse<CharactersResponse>>>
+
+    fun getComicsImages(
+        imageURI:String,
     ): Flow<BaseResult<WrappedResponse<CharactersResponse>>>
 
 }

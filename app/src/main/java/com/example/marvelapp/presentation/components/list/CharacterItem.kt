@@ -1,6 +1,7 @@
 package com.example.marvelapp.presentation.components.list
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -22,13 +23,13 @@ import com.example.marvelapp.domain.model.Character
 @Composable
 fun CharacterItem(
     character: Character,
-    onCharacterClick: () -> Unit,
-//    modifier: Modifier = Modifier
+    onCharacterClick: (characterId: Int) -> Unit
 ) {
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .height(200.dp),
+            .height(200.dp)
+            .clickable { onCharacterClick(character.id) },
     ) {
         val imageURL = character.thumbnail.path.plus(".".plus(character.thumbnail.extension))
         AsyncImage(
@@ -47,7 +48,7 @@ fun CharacterItem(
 
             ) {
             Text(
-                text = character.name,
+                text = character.name!!,
                 style = MaterialTheme.typography.titleMedium,
                 color = Color.Black,
                 maxLines = 1,

@@ -7,8 +7,10 @@ import com.example.marvelapp.domain.repository.MarvelRepository
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
-class GetCharactersListUseCase @Inject constructor(private val marvelRepository: MarvelRepository) {
-    fun execute(offset: Int, limit: Int): Flow<BaseResult<WrappedResponse<CharactersResponse>>> {
-        return marvelRepository.getCharactersList(offset, limit)
+class GetComicImageUseCase @Inject constructor(private val marvelRepository: MarvelRepository) {
+    suspend fun execute(
+        imageURI: String
+    ): Flow<BaseResult<WrappedResponse<CharactersResponse>>> {
+        return marvelRepository.getComicsImages(imageURI)
     }
 }

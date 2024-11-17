@@ -40,30 +40,20 @@ fun CharactersList(charactersViewModel: CharactersViewModel, navController: NavH
             charactersViewModel.getCharactersList()
         }
     }
-//    isLoading.takeIf { it }?.let {
-//        LoadingState()
-//    }
     LazyColumn(
         modifier = Modifier.padding(),
         state = listState
     ) {
         items(charactersList) { character ->
-            character?.let {
-                CharacterItem(character = it,
-                    onCharacterClick = {
-                        navController.navigate("characterDetails")
-                    })
-            }
+            CharacterItem(character = character,
+                onCharacterClick = { characterId ->
+                    navController.navigate("charDetails/$characterId")
+                })
         }
         isLoading.takeIf { it }?.let {
             item {
                 LoadingState()
             }
         }
-//        if (isLoading) {
-//            item {
-//                LoadingState()
-//            }
-//        }
     }
 }

@@ -18,7 +18,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class CharactersViewModel @Inject constructor(
-    private val getCharactersListUseCase: GetCharactersListUseCase,
+    private val getCharactersListUseCase: GetCharactersListUseCase
 ) : ViewModel() {
 
     private val _state =
@@ -26,8 +26,8 @@ class CharactersViewModel @Inject constructor(
     val state: StateFlow<GetCharacterState> =
         _state.asStateFlow()
 
-    private val _characterList = MutableStateFlow<List<Character?>>(emptyList())
-    val characterList: StateFlow<List<Character?>> = _characterList
+    private val _characterList = MutableStateFlow<List<Character>>(emptyList())
+    val characterList: StateFlow<List<Character>> = _characterList
 
 
     private var currentPage = 0
@@ -80,6 +80,10 @@ class CharactersViewModel @Inject constructor(
 
     private fun hideLoading() {
         _isLoading.value = false
+    }
+
+    fun getCharacterById(characterId: Int): Character? {
+        return _characterList.value.find { it.id == characterId }
     }
 }
 
